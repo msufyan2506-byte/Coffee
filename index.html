@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coffee Shop | Premium Experience</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      text-decoration: none;
+      list-style: none;
+      outline: none;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #000;
+      color: white;
+      line-height: 1.6;
+    }
+
+    /* --- HEADER --- */
+    header {
+      width: 100%;
+      padding: 20px 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(10px);
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(200, 169, 97, 0.2);
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 700;
+      color: #c8a961;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 30px;
+    }
+
+    nav ul li a {
+      color: white;
+      font-size: 16px;
+      transition: 0.3s;
+    }
+
+    nav ul li a:hover, nav ul li a.active {
+      color: #c8a961;
+    }
+
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+    }
+
+    .menu-toggle span {
+      width: 28px;
+      height: 3px;
+      background: white;
+    }
+
+    /* --- HERO --- */
+    .hero {
+      height: 100vh;
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://c4.wallpaperflare.com/wallpaper/315/69/166/drink-coffee-cup-coffee-beans-wallpaper-preview.jpg');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 8%;
+    }
+
+    .hero h1 {
+      font-size: clamp(35px, 8vw, 65px);
+      line-height: 1.1;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+    }
+
+    .hero p {
+      max-width: 600px;
+      font-size: 18px;
+      margin-bottom: 30px;
+      color: #ddd;
+    }
+
+    .bt {
+      padding: 15px 35px;
+      background: #c8a961;
+      border: none;
+      color: #000;
+      font-weight: 700;
+      cursor: pointer;
+      width: fit-content;
+      transition: 0.3s;
+      border-radius: 5px;
+    }
+
+    /* --- SECTIONS COMMON --- */
+    section {
+      padding: 80px 8%;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .section-title h2 {
+      font-size: 36px;
+      color: #fff;
+      text-transform: uppercase;
+    }
+
+    .section-title h2 span {
+      color: #c8a961;
+    }
+
+    /* --- ABOUT --- */
+    .about-content {
+      display: flex;
+      align-items: center;
+      gap: 50px;
+      flex-wrap: wrap;
+    }
+
+    .about-text { flex: 1; min-width: 300px; }
+    .about-image { flex: 1; min-width: 300px; }
+    .about-image img { width: 100%; border-radius: 10px; }
+
+    /* --- MENU & PRODUCTS GRID --- */
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    .card {
+      background: #111;
+      padding: 20px;
+      border: 1px solid #333;
+      text-align: center;
+      transition: 0.3s;
+      border-radius: 10px;
+    }
+
+    .card:hover { border-color: #c8a961; transform: translateY(-5px); }
+    .card img { width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 15px; }
+    
+    .price { color: #c8a961; font-size: 22px; font-weight: bold; margin: 10px 0; }
+
+    /* --- CONTACT --- */
+    .contact-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      background: #111;
+      border-radius: 15px;
+      overflow: hidden;
+    }
+
+    .map-container { flex: 1; min-width: 300px; min-height: 400px; }
+    .form-container { flex: 1; padding: 40px; min-width: 300px; }
+
+    .form-group { margin-bottom: 20px; }
+    .form-group input, .form-group textarea {
+      width: 100%;
+      padding: 12px;
+      background: #222;
+      border: 1px solid #444;
+      color: #fff;
+      border-radius: 5px;
+    }
+
+    /* --- FOOTER --- */
+    .footer {
+      background: #000;
+      padding: 60px 8% 20px;
+      border-top: 1px solid #333;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-box h3 { color: #c8a961; margin-bottom: 20px; }
+    .footer-box p, .footer-box a { color: #bbb; font-size: 14px; margin-bottom: 10px; display: block; }
+    .footer-box a:hover { color: #c8a961; }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 20px;
+      border-top: 1px solid #222;
+      color: #666;
+      font-size: 13px;
+    }
+
+    /* --- MOBILE RESPONSIVE --- */
+    @media (max-width: 768px) {
+      .menu-toggle { display: flex; }
+      nav ul {
+        position: absolute; top: 70px; right: -100%; width: 100%;
+        background: #000; flex-direction: column; text-align: center;
+        padding: 40px 0; transition: 0.5s;
+      }
+      nav ul.show { right: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">☕ COFFEEBRAND</div>
+    <div class="menu-toggle" id="menu-toggle">
+      <span></span><span></span><span></span>
+    </div>
+    <nav>
+      <ul id="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#blogs">Blogs</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero" id="home">
+    <h1>FRESH COFFEE IN<br>THE MORNING</h1>
+    <p>Experience the finest hand-picked organic beans roasted to perfection. Start your day with a boost of energy.</p>
+    <button class="bt">Get It Now</button>
+  </section>
+
+  <section id="about">
+    <div class="section-title">
+      <h2>About <span>Us</span></h2>
+    </div>
+    <div class="about-content">
+      <div class="about-text">
+        <h3>What Makes Our Coffee Special?</h3>
+        <p>Our beans are sourced directly from sustainable farms, ensuring every cup supports local growers and the environment. We roast in small batches for peak flavor.</p>
+        <button class="bt">Learn More</button>
+      </div>
+      <div class="about-image">
+        <img src="https://static.vecteezy.com/system/resources/thumbnails/028/237/391/small/refreshing-cup-of-hot-coffee-on-a-table-isolated-on-black-background-copy-space-cozy-warm-mood-ai-generative-photo.jpg" alt="Coffee">
+      </div>
+    </div>
+  </section>
+
+  <section id="menu">
+    <div class="section-title">
+      <h2>Our <span>Menu</span></h2>
+    </div>
+    <div class="grid-container">
+      <div class="card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7vPWqIhg804865f6V__nbsPQaSAQSDHK8GQ&s" alt="Menu">
+        <h3>Tasty & Healthy</h3>
+        <div class="price">$15.99 <span style="text-decoration:line-through; font-size:14px; color:#777;">$20.99</span></div>
+        <button class="bt">Add To Cart</button>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1561047029-3000c68339ca?auto=format&fit=crop&w=500&q=80" alt="Menu">
+        <h3>Arabica Roast</h3>
+        <div class="price">$12.99</div>
+        <button class="bt">Add To Cart</button>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1498804103079-a6351b050096?auto=format&fit=crop&w=500&q=80" alt="Menu">
+        <h3>Cappuccino</h3>
+        <div class="price">$18.99</div>
+        <button class="bt">Add To Cart</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="blogs">
+    <div class="section-title">
+      <h2>Latest <span>Blogs</span></h2>
+    </div>
+    <div class="grid-container">
+      <div class="card" style="text-align: left;">
+        <img src="https://images.unsplash.com/photo-1587734195503-904fca47e0e9?auto=format&fit=crop&w=500&q=80" alt="Blog">
+        <h4>Refreshing Morning Rituals</h4>
+        <p style="font-size: 13px; color: #aaa; margin: 10px 0;">By Admin / 15th Jan, 2026</p>
+        <p>Discover how the right coffee can transform your productivity levels...</p>
+        <a href="#" style="color:#c8a961; font-weight:bold; margin-top:10px; display:inline-block;">Read More</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="section-title">
+      <h2>Contact <span>Us</span></h2>
+    </div>
+    <div class="contact-container">
+      <div class="map-container">
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.142293761144!2d-73.98731968459391!3d40.75889497932681!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25855c6480299%3A0x55194ec5a1ae072e!2sTimes%20Square!5e0!3m2!1sen!2sus!4v1634567890123!5m2!1sen!2sus" 
+          width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+      <div class="form-container">
+        <h3>GET IN TOUCH</h3>
+        <form>
+          <div class="form-group"><input type="text" placeholder="Your Name" required></div>
+          <div class="form-group"><input type="email" placeholder="Your Email" required></div>
+          <div class="form-group"><input type="tel" placeholder="Phone Number"></div>
+          <div class="form-group"><textarea rows="5" placeholder="Your Message" style="width: 100%; background:#222; border:1px solid #444; color:#fff; padding:10px;"></textarea></div>
+          <button type="submit" class="bt">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-box">
+        <h3>CoffeeBrand</h3>
+        <p>The perfect spot for coffee lovers. We serve the freshest coffee in town with a touch of love.</p>
+      </div>
+      <div class="footer-box">
+        <h3>Quick Links</h3>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#menu">Menu</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="footer-box">
+        <h3>Contact Info</h3>
+        <p>📍 Karachi, Pakistan</p>
+        <p>📞 +92 300 1234567</p>
+        <p>✉️ info@coffeebrand.com</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2026 CoffeeBrand | All Rights Reserved
+    </div>
+  </footer>
+
+  <script>
+    const toggle = document.getElementById('menu-toggle');
+    const navLinks = document.getElementById('nav-links');
+    toggle.addEventListener('click', () => {
+      navLinks.classList.toggle('show');
+    });
+    
+    // Smooth closing menu when link is clicked
+    document.querySelectorAll('nav ul li a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('show');
+      });
+    });
+  </script>
+</body>
+</html>
